@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/CSS/LSstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>SignUp</title>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="signup">
+        <h1>Sign Up</h1>
+        <form class="register-form"  method="post">
+          <label>First Name</label>
+          <input type="text" name="fname" placeholder="">
+          <label>Last Name</label>
+          <input type="text"  name="lname" placeholder="">
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="">
+          <label>Password</label>
+          <input type="password"name="password"  placeholder="">
+          <label>Confirm Password</label>
+          <input type="password" name="con_password" placeholder="">
+          <input type="button"  id="signup" value="Submit">
+        </form>
+      </div>
+
+    </div>
+    <p class="pa">Alredy have an account? <a href="/Login">Login</a></p>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+      const register = document.querySelector('.register-form')
+      const signup = document.querySelector("#signup")
+
+      signup.addEventListener("click", (e) => {
+    e.preventDefault()
+ 
+    const email = register.querySelector('input[name="email"]').value
+    const password = register.querySelector('input[name="password"]').value
+    const con_password = register.querySelector('input[name="con_password"]').value
+    const fname=register.querySelector('input[name="fname"]').value
+    const lname=register.querySelector('input[name="lname"]').value
+    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+ 
+    if (!reg.test(email)) {
+       alert('enter valid email')
+       return
+    }
+    if (password.length <= 6) {
+       alert('enter min 6 letter pass')
+       return
+    }
+    if(password != con_password){
+      alert("both password are differnt ")
+      return
+    }
+ 
+  
+    fetch(`/signup`, {
+       method: 'POST',
+       headers: {
+          'Content-type': 'application/json'
+       },
+       body: JSON.stringify({
+        First_Name:fname,
+        Last_Name:lname,
+        Email:email,
+        Password:password
+       })
+    })
+       .then((result) => {
+          return result.json()
+       })
+       .then(json => {
+          alert(json.data)
+          window.location.href = json.redirect
+          
+       })
+       .catch(err => console.log(err))
+ 
+       //clear input values
+       register.querySelector('input[name="email"]').value="";
+       register.querySelector('input[name="password"]').value="";
+       register.querySelector('input[name="con_password"]').value="";
+       register.querySelector('input[name="fname"]').value="";
+       register.querySelector('input[name="lname"]').value="";
+ })
+   </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+.navbar{
+    background-color: #49c1a2;
+  }
+  .bg{
+    background-color: #c8b7a6;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 250px;
+  }
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #49c1a2;
+    padding-top: 15px;
+  }
+  
+  p {
+    text-indent: 100px;
+    text-align: justify;
+    letter-spacing: 6px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 15px;
+  }
+  .mb-3{
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 85px;
+  }
+  button{
+    float: right;
+  }
+  
+  #comment-box, #post {
+      border: none;
+      border-radius: 5px;
+  }
+  #post:hover{
+      background-color: #49c1a2;
+      position: relative;
+  }
+  .qes{
+    padding-top: 150px;
+    margin: auto;
+  }
+  #comment-box{
+    margin-left: 375px;
+    height: 95px;
+    width: 500px;
+    margin-top: 25px;
+  }
+  #que{
+    box-sizing: content-box;
+    width: 300px;
+    height: 50px;
+    padding: 30px;
+    border: 10px solid blue;
+    margin:auto;
+  }
+  
